@@ -1,0 +1,22 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+function getmydata(p){
+    var page=p;
+    $('#loadingmessage').show();  // show the loading message.
+    $.ajax({
+        url: "result.php",
+        type: "POST",
+        cache: false,
+        data: "&name="+ page,
+        success : function(html){
+            $("#results").html(html);
+            $('#loadingmessage').hide(); // hide the loading message
+        }
+    });
+}
+</script>
+<input type="text" onkeyup="getmydata(this.value)"/>
+<br><div id='loadingmessage' style='display:none'>
+Loading...
+</div>
+<div id="results"></div>
